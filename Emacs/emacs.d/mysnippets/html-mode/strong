@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: strong
+# key: st
+# --
+<strong>$0</strong>

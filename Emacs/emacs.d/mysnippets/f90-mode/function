@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name : function
+# key: fu
+# --
+Function ${1:Name}()
+  !- description of $1
+  implicit none
+  $0
+  
+End Function $1

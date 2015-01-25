@@ -1,0 +1,167 @@
+#include ".deadcompose"
+include "/usr/share/X11/locale/en_US.UTF-8/Compose"
+
+##------------------##
+##--    Greek     --##
+##------------------##
+## small letters
+<Multi_key> <a> <l>                   : "α"    U03B1          # \alpha
+<Multi_key> <b> <e>                   : "β"    U03B2          # \beta
+<Multi_key> <g> <a>                   : "γ"    U03B3          # \gamma
+<Multi_key> <d> <e>                   : "δ"    U03B4          # \delta
+<Multi_key> <e> <p>                   : "ε"    U03B5          # \varepsilon
+<Multi_key> <z> <e>                   : "ζ"    U03B6          # \zeta
+<Multi_key> <e> <t>                   : "η"    U03B7          # \eta
+<Multi_key> <t> <h>                   : "θ"    U03B8          # \theta
+<Multi_key> <i> <o>                   : "ι"    U03B9          # \iota
+<Multi_key> <k> <a>                   : "κ"    U03BA          # \kappa
+<Multi_key> <l> <a>                   : "λ"    U03BB          # \lambda
+<Multi_key> <m> <u>                   : "μ"    U03BC          # \mu
+<Multi_key> <n> <u>                   : "ν"    U03BD          # \nu
+<Multi_key> <x> <i>                   : "ξ"    U03BE          # \xi
+<Multi_key> <p> <i>                   : "π"    U03C0          # \pi
+<Multi_key> <r> <h>                   : "ρ"    U03C1          # \rho
+<Multi_key> <s> <i>                   : "σ"    U03C3          # \sigma 
+<Multi_key> <t> <a>                   : "τ"    U03C4          # \tau
+<Multi_key> <u> <p>                   : "υ"    U03C5          # \upsilon
+<Multi_key> <v> <a>                   : "φ"    U03C6          # \varphi
+<Multi_key> <c> <h>                   : "χ"    U03C7          # \chi
+<Multi_key> <p> <s>                   : "ψ"    U03C8          # \psi
+<Multi_key> <o> <m>                   : "ω"    U03C9          # \omega
+## capital letters
+<Multi_key> <G> <a>                   : "Γ"    U0393          # \Gamma
+<Multi_key> <D> <e>                   : "Δ"    U0394          # \Delta
+<Multi_key> <T> <h>                   : "Θ"    U0398          # \Theta
+<Multi_key> <L> <a>                   : "Λ"    U039B          # \Lambda
+<Multi_key> <X> <i>                   : "Ξ"    U039E          # \Xi
+<Multi_key> <P> <i>                   : "Π"    U03A0          # \Pi
+<Multi_key> <S> <i>                   : "Σ"    U03A3          # \Sigma
+<Multi_key> <P> <h>                   : "Φ"    U03A6          # \Phi
+<Multi_key> <P> <s>                   : "Ψ"    U03A8          # \Psi
+<Multi_key> <O> <m>                   : "Ω"    U03A9          # \Omega
+
+##<Multi_key> <v> <a>                   : "ς"    U03C2          # \varsigma
+##<Multi_key> <v> <a>                   : "ϑ"    U03D1          # \vartheta
+<Multi_key> <U> <p>                   : "ϒ"    U03D2          # \Upsilon
+<Multi_key> <p> <h>                   : "ϕ"    U03D5          # \phi
+##<Multi_key> <v> <a>                   : "ϖ"    U03D6          # \varpi
+##<Multi_key> <v> <a>                   : "ϰ"    U03F0          # \varkappa
+<Multi_key> <v> <r>                   : "ϱ"    U03F1          # \varrho
+##<Multi_key> <e> <p>                   : "ϵ"    U03F5          # \epsilon
+##------------------##
+##--    Symbol    --##
+##------------------##
+<Multi_key> <d> <a>                   : "†"    U2020         # \dagger
+##<Multi_key> <d> <d>                   : "‡"    U2021         # \ddagger
+<Multi_key> <e> <l>                   : " "    U2113         # \ell
+<Multi_key> <p> <a>                   : "∂"    U2202         # \partial
+<Multi_key> <e> <m>                   : "∅"    U2205         # \emptyset
+<Multi_key> <n> <a>                   : "∇"    U2207         # \nabla
+<Multi_key> <i> <n> <t>               : "∫"    U222B         # \int
+<Multi_key> <i> <n> <f>               : "∞"    U221E         # \infty
+##-------------------------##
+##--    Double-struck    --##
+##-------------------------##
+<Multi_key> <b> <C>                   : "ℂ"    U2102          # \mathbb{C}
+<Multi_key> <b> <H>                   : "ℍ"    U210D          # \mathbb{H}
+<Multi_key> <b> <N>                   : "ℕ"    U2115          # \mathbb{N}
+<Multi_key> <b> <P>                   : "ℙ"    U2119          # \mathbb{P}
+<Multi_key> <b> <Q>                   : "ℚ"    U211A          # \mathbb{Q}
+<Multi_key> <b> <R>                   : "ℝ"    U211D          # \mathbb{R}
+<Multi_key> <b> <Z>                   : "ℤ"    U2124          # \mathbb{Z}
+<Multi_key> <b> <E>                   : "𝔼"    U1D53C          # \mathbb{E}
+<Multi_key> <b> <K>                   : "𝕂"    U1D542          # \mathbb{K}
+<Multi_key> <b> <S>                   : "𝕊"    U1D54A          # \mathbb{S}
+<Multi_key> <b> <T>                   : "𝕋"    U1D54B          # \mathbb{T}
+<Multi_key> <b> <U>                   : "𝕌"    U1D54C          # \mathbb{U}
+<Multi_key> <b> <1>                   : "𝟙"    U1D7D9          # \mathbbm{1}
+##-------------------------##
+##--     Quantifiers     --##
+##-------------------------##
+<Multi_key> <f> <o>                   : "∀"    U2200         # \forall
+<Multi_key> <e> <x>                   : "∃"    U2203         # \exists
+##<Multi_key> <n> <e>                   : "∄"    U2204         # \nexists
+##-------------------------##
+##--      Relations      --##
+##-------------------------##
+<Multi_key> <a> <p>                   : "≈"    U2248         # \approx
+<Multi_key> <i> <n> <n>               : "∈"    U2208         # \in
+<Multi_key> <n> <o>                   : "∉"    U2209         # \notin
+<Multi_key> <n> <i>                   : "∋"    U220B         # \ni
+##<Multi_key> <n> <o>                   : "∌"    U220B         # \notni
+<Multi_key> <L> <w>                   : "⇐"    U21D0         # \Leftarrow
+<Multi_key> <R> <w>                   : "⇒"    U21D2         # \Rightarrow
+<Multi_key> <L> <R>                   : "⇔"    U21D4         # \Leftrightarrow
+<Multi_key> <l> <e>                   : "≤"    U2264         # \leq
+<Multi_key> <g> <e>                   : "≥"    U2265         # \geq
+<Multi_key> <l> <l>                   : "≪"    U226A         # \ll
+<Multi_key> <g> <g>                   : "≫"    U226B         # \gg
+##<Multi_key> <l> <e>                   : "⩽"    U2A7D         # \leqslant
+##<Multi_key> <g> <e>                   : "⩾"    U2A7E         # \geqslant
+<Multi_key> <n> <e>                   : "≠"    U2260         # \neq
+<Multi_key> <e> <q>                   : "≡"    U2261         # \equiv
+##<Multi_key> <n> <e>                   : "≢"    U2262         # \nequiv
+<Multi_key> <p> <e>                   : "⊥"    U22A5         # \perp
+<Multi_key> <s> <u> <b>               : "⊂"    U2282         # \subset
+<Multi_key> <s> <u> <p>               : "⊃"    U2283         # \supset
+##-------------------------##
+##--     Operations      --##
+##-------------------------##
+<Multi_key> <c> <a>                   : "∩"    U2229         # \cap
+<Multi_key> <c> <u>                   : "∪"    U222A         # \cup
+<Multi_key> <w> <e>                   : "∧"    U2227         # \wedge
+<Multi_key> <v> <e>                   : "∨"    U2228         # \vee
+<Multi_key> <t> <i>                   : "×"    U00D7         # \times
+<Multi_key> <d> <i>                   : "÷"    U00F7         # \div
+##<Multi_key> <e> <p>                   : "−"    U2212         # -
+<Multi_key> <s> <q>                   : "√"    U221A         # \sqrt
+<Multi_key> <o> <p>                   : "⊕"    U2295         # \oplus
+<Multi_key> <o> <t>                   : "⊗"    U2297         # \otimes
+##<Multi_key> <c> <i>                   : "⊛"    U229B         # \circledast
+<Multi_key> <b> <p>                   : "⨁"    U2A01         # \bigoplus
+<Multi_key> <b> <t>                   : "⨂"    U2A02         # \bigotimes
+<Multi_key> <c> <i>                   : "∘"    U2218         # \circ
+<Multi_key> <s> <u> <m>               : "∑"    U2211         # \sum
+<Multi_key> <c> <d>                   : "⋅"    U22C5         # \cdot
+##-------------------------##
+##--      Modifiers      --##
+##-------------------------##
+##<Multi_key> <n> <e>                   : "¬"    U00AC         # \neg
+<Multi_key> <p> <m>                   : "±"    U00B1         # \pm
+<Multi_key> <m> <p>                   : "∓"    U2213         # \mp
+##<Multi_key> <2> <0>                   : "⁺"    U207A         # ^{+}}
+##<Multi_key> <2> <0>                   : "⁻"    U207B         # ^{-}}
+##-------------------------##
+##--        Arrows       --##
+##-------------------------##
+<Multi_key> <t> <o>                   : "→"   U2192         # \to
+<Multi_key> <r> <w>                   : "⟶"   U27F6         # \longrightarrow
+<Multi_key> <l> <w>                   : "←"   U2190         # \leftarrow
+<Multi_key> <u> <w>                   : "↑"    U2191         # \uparrow
+<Multi_key> <d> <w>                   : "↓"    U2193         # \downarrow
+<Multi_key> <m> <a>                   : "↦"   U21A6         # \mapsto
+##-------------------------##
+##--      Delimiters     --##
+##-------------------------##
+<Multi_key> <l> <b>                   : "⟦"    U27E6         # \llbracket
+<Multi_key> <r> <b>                   : "⟧"    U27E7         # \rrbracket
+<Multi_key> <l> <n>                   : "⟨"    U27E8         # \langle
+<Multi_key> <r> <n>                   : "⟩"    U27E9         # \rangle
+<Multi_key> <n> <m>                   : "∥"    U2225         # \|
+##-------------------------##
+##--        Dots         --##
+##-------------------------##
+<Multi_key> <d> <o>                   : "…"    U2026         # \dots
+<Multi_key> <v> <d>                   : "⋮"    U22EE         # \vdots
+##<Multi_key> <c> <d>                   : "⋯"    U22EF         # \cdots
+<Multi_key> <i> <d>                   : "⋰"    U22F0         # \iddots
+<Multi_key> <d> <d>                   : "⋱"    U22F1         # \ddots
+##-------------------------##
+##-- Typography (French) --##
+##-------------------------##
+## <Multi_key> <o> <g>                   : "«"    U00AB         # \og
+## <Multi_key> <f> <g>                   : "»"    U00BB         # \fg
+##-------------------------##
+##--   Japanese : Itō    --##
+##-------------------------##
+## <Multi_key> <e> <p>                   : "ō"    U014D         # \=o

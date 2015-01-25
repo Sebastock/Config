@@ -1,0 +1,56 @@
+##--------------------------------##
+##--           Unicode          --##
+##--------------------------------##
+
+1) Compose key
+--------------
+. key file: none
+Keyboard > Layout> Option > Composekey (expand)
+
+(MAJ key for me)
+
+Restart the session to use it. If it still does not work, then type in a terminal:
+   im-switch -c
+and choose "default-xim". Restart the session once again.
+
+
+2) Create keys
+--------------
+. key file: ".XCompose"
+ example line: <Multi_key> <a> <l>                   : "α"    U03B1          # \alpha
+
+Mettre le fichier dans: "~/"
+
+If it doesn't work, then:
+  . create the file ~/.gnomerc
+  . write:
+     export GTK_IM_MODULE="xim"
+  . restart the session
+
+3) LaTeX integration
+--------------------
+. key file: "unicode_character.sty"
+ example line: \DeclareUnicodeCharacter{03B1}{\alpha}
+In the LaTeX file:
+   \usepackage[utf8]{inputenc}
+   \input{/pathToFile/unicode_character}
+
+Mettre le fichier dans: "~/Computer/LaTeX/"
+   
+4) Collaboration/journal publication
+------------------------------------
+. key file: "latexconversion.conf"
+ example line: α;\alpha
+ 
+Pour avoir les 2 scripts
+    . reduced2standard: unicode en LaTeX
+    . standard2reduced: LaTeX en unicode
+Lancer le script "genscripts-latexconversion" (dans le dossier "Amic_code")
+avec le fichier "latexconversion.conf" updaté. Le script génère les 2 scripts.
+
+Mettre les 2 fichiers dans: "~/Computer/Shell/myScripts/"
+
+
+TODO:
+ . dans unicode_character.sty et XCompose: mauvais unicode pour flèche du bas "\downarrow"
+ . no longrightarrow

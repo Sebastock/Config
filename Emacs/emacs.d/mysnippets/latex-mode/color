@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: color
+# key: co
+# --
+{\color[rgb]{.8,0,0} $0}

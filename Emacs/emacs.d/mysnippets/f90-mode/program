@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name : program
+# key: pr
+# --
+Program ${1:Name}
+
+  !- use module
+  implicit none
+
+  !- declaration of variables
+  $0
+  
+End Program $1

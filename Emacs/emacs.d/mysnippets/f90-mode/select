@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name : select
+# key: se
+# --
+Select Case (${1:integer})
+case(${2:1})
+   $0
+End Select

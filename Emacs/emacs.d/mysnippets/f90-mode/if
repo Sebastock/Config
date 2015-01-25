@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name : if_then_end_if
+# key: if
+# --
+If ( ${1:condition} ) Then
+   $0
+End If

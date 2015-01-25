@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: figure
+# key: fi
+# --
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=1]{figures/${1:nom}.eps}
+  \caption{$0}
+  \label{fig:$1}
+\end{figure}

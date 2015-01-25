@@ -1,0 +1,5 @@
+#name : subroutine
+# --
+subroutine $1
+  $0
+endsubroutine $1

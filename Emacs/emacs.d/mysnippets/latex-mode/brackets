@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: brakets
+# key: []
+# --
+\left[$0 \right]

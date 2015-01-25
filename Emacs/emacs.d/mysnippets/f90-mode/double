@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Double Precision
+# key: do
+# --
+Double Precision                            :: $0

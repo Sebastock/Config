@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name : subroutine
+# key: su
+# --
+Subroutine ${1:Name}()
+  !- description of $1
+  implicit none
+  $0
+  
+End Subroutine $1

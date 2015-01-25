@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: function
+# key: fu
+# --
+function ${1:y}=${2:NameFunction}
+  $0
+endfunction

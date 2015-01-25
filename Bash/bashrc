@@ -1,0 +1,33 @@
+
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u:\W\$ '
+    # default: PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+
+
+
+
+##### petit rajout seba pour le .bashrc #####
+set -o emacs			# pour avoir les raccourcis emacs
+#/usr/games/fortune		# un peu de sagesse
+# on rajoute un petit dossier où l'on met nos scripts
+if [ -d ~/Computer/Shell/myScripts ] ; then
+    PATH=~/Computer/Shell/myScripts:/opt/intel/bin/:"${PATH}"
+    export PATH
+    #export PATH=$PATH:/home/seba/Computer/Shell/Macro_script
+fi
+# pour eviter que le pdf se tourne
+export GS_OPTIONS=-dAutoRotatePages=/None
+
+alias q='exit'
+alias mocp2="mocp /media/Stock/Music"
+alias ifort="/opt/intel/bin/ifort"
+alias matlab="/opt/matlab/bin/./matlab -nojvm"
+
+# my favorite editor
+EDITOR="emacs -nw"; export EDITOR
+
+# for unison
+export UNISONLOCALHOSTNAME=myDesktop

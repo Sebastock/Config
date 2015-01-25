@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: stackrel
+# key: st
+# --
+\stackrel{${1:ε} → ${2:0}}{⟶} $0

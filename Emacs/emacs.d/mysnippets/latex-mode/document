@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: document
+# key: doc
+# --
+\documentclass[12pt]{article}
+\input{$HOME/Computer/LaTeX/preambule} % $HOME
+
+\title{$0}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+%\tableofcontents
+
+\section*{Introduction}
+\setcounter{equation}{0}
+
+
+
+\end{document}
