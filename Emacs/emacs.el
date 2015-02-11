@@ -1,6 +1,6 @@
 ;;----------------------------------------------------------;;
 ;;-------  Mon "précieux" .emacs.el          ---------------;;
-;;-------           sebastock  22.06.2012    ---------------;;
+;;-------           sebastock  10.02.2015    ---------------;;
 ;;----------------------------------------------------------;;
 
 ;;
@@ -19,24 +19,13 @@
 ;;    [f6]   :   active-yasnippet
 ;;    [f7]   :   speedbar (with one frame)
 ;;    [f8]   :   add-a-number
-;;    [f9]   :   open in guake
+;;    [f10]  :   open-in-nautilus
+;;    [f11]  :   open-in-guake
 
 
-;;--------------- A) Affichage ---------------;;
-;;----------------------------------------------------;;
-(setq inhibit-startup-message t)	; no startup message
-(show-paren-mode t)			; show the other parenthesis in color
-(setq line-number-mode t)		; show line number
-(setq column-number-mode t)		; show column number
-(global-visual-line-mode 1)		; show the line like any editor
-(setq-default fill-column 10000000)
-(modify-frame-parameters nil '((wait-for-wm . nil)) ) ; no waiting
-;; special psa
-(set-face-attribute 'default (selected-frame) :height 105)
-;;---- no menu bar (barre d'icônes)
-(if window-system
-    (tool-bar-mode 0)
-  )
+
+;;--------------- A) Display ---------------;;
+;;------------------------------------------;;
 ;;---- Color theme
 (if window-system
     (progn
@@ -46,14 +35,26 @@
       ;;(color-theme-gnome2)
       (load "~/.emacs.d/zenburn_seb.el")
       ) )
+(setq inhibit-startup-message t)	; no startup message
+(show-paren-mode t)			; show the other parenthesis in color
+(setq line-number-mode t)		; show line number
+(setq column-number-mode t)		; show column number
+(global-visual-line-mode 1)		; show the line like any editor
+(setq-default fill-column 10000000)
+(modify-frame-parameters nil '((wait-for-wm . nil)) ) ; no waiting
+;; special psa
+(set-face-attribute 'default (selected-frame) :height 120)
+;;---- no menu bar (barre d'icônes)
+(if window-system
+    (tool-bar-mode 0)
+  )
 ;;---- windows size
 (menu-bar-mode nil)
 ;;(set-screen-width 120)
 ;;(set-screen-height 50)
 ;;---- tab
 (load "~/.emacs.d/tabbar_seb.el")
-;;---- font-size
-(set-face-attribute 'default nil :height 130)
+
 
 ;;----------         B) Scrolling       ----------;;
 ;;------------------------------------------------;;
@@ -75,6 +76,8 @@
 
 ;;----------          C) Writing        ----------;;
 ;;------------------------------------------------;;
+;;---- Cua-mode
+(cua-mode t)				    ; C-x C-c C-v
 (setq c-basic-offset 4)			    ; 4 space for the indentation
 (delete-selection-mode 1)		    ; erase selectionned text
 (global-set-key "\C-m" 'newline-and-indent) ; automatic indentation
@@ -85,8 +88,6 @@
 (setq x-select-enable-clipboard t); makes killing/yanking interact with clipboard X11 selection
 (global-set-key (kbd "C-M-y") 'browse-kill-ring) ; browse the kill-ring
 (global-set-key [f2] 'kmacro-bind-to-key)		; shortcut
-;;---- Cua-mode
-(cua-mode t)				    ; C-x C-c C-v
 ;;---- cut or copy one line
 (defadvice kill-ring-save (before slick-copy activate compile)
   "When called interactively with no active region, copy a single line instead."
@@ -102,6 +103,7 @@
     ))
 ;;---- sentence-highlight
 ;;(load "~/.emacs.d/sentence-highlight.el")
+
 
 ;;----------   D) Backup file~    ----------;;
 ;;------------------------------------------;;
@@ -128,7 +130,6 @@
 ;;
 ;; Smart-tab, Yasnippet, speedbar (one frame)
 ;;
-
 ;;---- Yasnippet mode
 (defun active-yasnippet ()
   "Activate the yasnippet mode"
@@ -147,6 +148,10 @@
 (setq sr-speedbar-width-x 40)
 (setq sr-speedbar-width 40)
 (global-set-key [f7] 'speedbar)		; shortcut
+;;---- tags
+(substitute-key-definition
+ 'find-tag 'find-tag-other-window (current-global-map))
+
 
 ;;---------     F) Miscellaneous      ---------;;
 ;;---------------------------------------------;;
@@ -186,9 +191,8 @@
 ;;-------------------   M) Special mode    -------------------;;
 ;;------------------------------------------------------------;;
 ;; 
-;; Auxtex, Text, Org-mode
+;; Auctex, Text, Org-mode
 ;; 
-
 ;;------------ M.1) Auctex ------------;;
 ;;-------------------------------------;;
 ;; indenter à la nouvelle ligne
@@ -201,22 +205,21 @@
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex) ; Pour AUCTeX LaTeX mode
 (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
 (setq reftex-label-alist '((nil ?e nil "~\\eqref{%s}" nil nil)))
-;; So that RefTeX finds my bibliography
-;;(setq reftex-default-bibliography '("/home/seba/Computer/LaTeX/BibTex"))
+(setq reftex-ref-macro-prompt nil)
 ;; Configuration des visualiseurs
 (require 'tex)
 (TeX-global-PDF-mode t)
 (setq TeX-view-program-selection
       '((output-dvi "DVI Viewer")
-        (output-pdf "PDF Viewer")))
+	(output-pdf "PDF Viewer")))
 (setq TeX-view-program-list
       '(("DVI Viewer" "okular %o")
-        ("PDF Viewer" "okular --unique %o#src:%n%b")))
-;;      ("PDF Viewer" "okular %o")))
-;;      ("PDF Viewer" "evince %o")))
+	("PDF Viewer" "okular --unique %o#src:%n%b")))
+;;	("PDF Viewer" "okular %o")))
+;;	("PDF Viewer" "evince %o")))
 ;; C-cc
-(defun tex-build-command-function (cmd &optional recenter-output-buffer
-                                       save-buffer override-confirm)
+(defun tex-build-command-function (cmd &optional recenter-output-buffer 
+				       save-buffer override-confirm)
   "Build a TeX-command function."
   (` (lambda()
        (interactive)
@@ -240,15 +243,13 @@
 )
 ;; see http://emacs-fu.blogspot.com/2010/04/creating-custom-modes-easy-way-with.html
 
-
 ;;--------- M.3) Org-mode ---------;;
-;;-------------------------------;;
+;;---------------------------------;;
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (add-hook 'org-mode-hook 'turn-on-font-lock) ; not needed when global-font-lock-mode is on
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
-;;(setq (org-agenda-files nil))
 
 ;;--------- M.4) Octave ---------;;
 ;;-------------------------------;;
@@ -265,8 +266,17 @@
 (setq auto-mode-alist
       (append '(("\\.m$" . octave-mode)) auto-mode-alist))
 
-;;--------- M.5) Guake  ---------;;
-;;-------------------------------;;
+;;--------- M.5) Markdown ---------;;
+;;---------------------------------;;
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+
+;;-------------------   GUI    -------------------;;
+;;------------------------------------------------;;
+;;--------- G.1) Guake ---------;;
+;;------------------------------;;
 ;; 1) guake -n --execute-command="cd 'pwd'" (shell-command-to-string "pwd")
 ;; 2) (defun shell-command-on-buffer ()
 ;;   "Asks for a command and executes it in inferior shell with current buffer as input."
@@ -283,14 +293,29 @@
    "guake --new-tab=new --execute-command=\"cd `pwd`\""))
 (global-set-key [f11] 'open-guake-on-buffer)
 
+;;--------- G.2) Nautilus ---------;;
+;;---------------------------------;;
 (defun open-nautilus-on-buffer ()
   "open nautilus right here!"
   (interactive)
   (shell-command-on-region
    (point-min) (point-max)
-   "nautilus ."))
+   "nautilus --new-window ."))
 (global-set-key [f10] 'open-nautilus-on-buffer)
 
+
+
+
+
+;;-------------------   Fancy    -------------------;;
+;;--------------------------------------------------;;
+;; multiple cursor
+(add-to-list 'load-path "~/.emacs.d/multiple-cursors.el-master")
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -301,3 +326,11 @@
  '(TeX-source-correlate-mode t)
  '(TeX-source-correlate-start-server t)
  '(tabbar-separator (quote (0.5))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+
