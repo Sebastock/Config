@@ -36,6 +36,7 @@
 (setq line-number-mode t) ; show line number
 (setq column-number-mode t) ; show column number
 (global-visual-line-mode 1) ; show the line like any editor
+(menu-bar-mode -1) ; no menu
 (setq-default fill-column 10000000)
 (modify-frame-parameters nil '((wait-for-wm . nil)) ) ; no waiting
 ;; special psa
