@@ -102,13 +102,14 @@ Also bind `class' to ((class color) (min-colors 89))."
    `(default ((t (:foreground ,zenburn-fg :background ,zenburn-bg))))
    `(cursor ((t (:foreground ,zenburn-fg :background ,zenburn-fg+1))))
    `(escape-glyph ((t (:foreground ,zenburn-yellow :bold t))))
-   `(fringe ((t (:foreground ,zenburn-fg :background ,zenburn-bg+1))))
+   ;;`(fringe ((t (:foreground ,zenburn-fg :background ,zenburn-bg+1))))
    `(header-line ((t (:foreground ,zenburn-yellow
                                   :background ,zenburn-bg-1
                                   :box (:line-width -1 :style released-button)))))
    `(highlight ((t (:background ,zenburn-bg-05))))
    `(success ((t (:foreground ,zenburn-green :weight bold))))
    `(warning ((t (:foreground ,zenburn-orange :weight bold))))
+  
 ;;;;; compilation
    `(compilation-column-face ((t (:foreground ,zenburn-yellow))))
    `(compilation-enter-directory-face ((t (:foreground ,zenburn-green))))
@@ -121,7 +122,8 @@ Also bind `class' to ((class color) (min-colors 89))."
    `(compilation-line-number ((t (:foreground ,zenburn-yellow))))
    `(compilation-message-face ((t (:foreground ,zenburn-blue))))
    `(compilation-warning-face ((t (:foreground ,zenburn-orange :weight bold :underline t))))
-   `(compilation-mode-line-exit ((t (:foreground ,zenburn-green+2 :weight bold))))
+   ;;`(compilation-mode-line-exit ((t (:foreground ,zenburn-green+2 :weight bold))))
+   `(compilation-mode-line-exit ((t (:foreground ,zenburn-bg :weight bold)))) ;;seb
    `(compilation-mode-line-fail ((t (:foreground ,zenburn-red :weight bold))))
    `(compilation-mode-line-run ((t (:foreground ,zenburn-yellow :weight bold))))
 ;;;;; grep
@@ -138,7 +140,7 @@ Also bind `class' to ((class color) (min-colors 89))."
    `(menu ((t (:foreground ,zenburn-fg :background ,zenburn-bg))))
    `(minibuffer-prompt ((t (:foreground ,zenburn-yellow))))
    `(mode-line
-     ((,class (:foreground ,zenburn-green+1
+     ((,class (:foreground ,zenburn-bg ; seb -> before: zenburn-green+1
                            :background ,zenburn-bg-1
                            :box (:line-width -1 :style released-button)))
       (t :inverse-video t)))
@@ -940,6 +942,11 @@ Also bind `class' to ((class color) (min-colors 89))."
 ;;;;; yascroll
    `(yascroll:thumb-text-area ((t (:background ,zenburn-bg-1))))
    `(yascroll:thumb-fringe ((t (:background ,zenburn-bg-1 :foreground ,zenburn-bg-1))))
+
+;;;;; seb
+   `(fringe ((t (:foreground ,zenburn-bg :background ,zenburn-bg)))) ;seb
+   `(mode-line ((t (:foreground ,zenburn-bg :background ,zenburn-bg+1)))) ;seb
+
    ))
 
 ;;; Theme Variables
@@ -974,6 +981,7 @@ Also bind `class' to ((class color) (min-colors 89))."
    `(vc-annotate-very-old-color ,zenburn-magenta)
    `(vc-annotate-background ,zenburn-bg-1)
    ))
+
 
 ;;; Rainbow Support
 
