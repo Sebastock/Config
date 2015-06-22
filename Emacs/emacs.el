@@ -47,7 +47,7 @@
   )
 (scroll-bar-mode -1)			; no scroll-bar
 ;;(global-linum-mode t)
-
+(global-set-key (kbd "M-o") 'other-window)
 
 ;;---- windows size
 (menu-bar-mode nil)
