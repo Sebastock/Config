@@ -184,6 +184,7 @@
 ;;--------------------------------------------------------;;
 ;; F.1) Auctex
 (require 'tex)
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq TeX-newline-function 'newline-and-indent)
 (TeX-global-PDF-mode t)
 ;; config to have the LaTeX file link with the PDF
