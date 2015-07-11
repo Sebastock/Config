@@ -1,6 +1,6 @@
 ;;----------------------------------------------------------;;
 ;;-------     Mon "précieux" .emacs.el       ---------------;;
-;;-------             sebastock 28.06.2015   ---------------;;
+;;-------             sebastock 10.07.2015   ---------------;;
 ;;----------------------------------------------------------;;
 ;;
 ;;     ___ _ __ ___   __ _  ___ ___     ___  _
@@ -226,7 +226,28 @@
   "A mode for text files" ;; doc string for this mode
   )
 ;; see http://emacs-fu.blogspot.com/2010/04/creating-custom-modes-easy-way-with.html
-;; F.3) Markdown
+;; F.3) Org-mode
+;;--------------
+(require 'org)
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-log-done t)
+;; agenda
+(setq org-agenda-files (list "~/Computer/Emacs/org-mode/agenda/research.org"
+                             "~/Computer/Emacs/org-mode/agenda/admin.org"))
+;; capture notes (Ctrl-c n)
+(setq org-directory "~/Computer/Emacs/org-mode/notes/")
+(setq org-default-notes-file (concat org-directory "notes.org"))
+(define-key global-map "\C-cn" 'org-capture)
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/Computer/Emacs/org-mode/notes/gtd.org" "Tasks")
+	 "* TODO %?\n  %i\n  %a")
+        ("j" "Journal" entry (file+datetree "~/Computer/Emacs/org-mode/notes/journal.org")
+	 "* %?\nEntered on %U\n  %i\n  %a")))
+
+
+
+;; F.4) Markdown
 ;;--------------
 (autoload 'markdown-mode "markdown-mode"
   "Major mode for editing Markdown files" t)
