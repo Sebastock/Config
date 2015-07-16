@@ -187,6 +187,9 @@
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq TeX-newline-function 'newline-and-indent)
 (TeX-global-PDF-mode t)
+;; To have nice eqref and no prompt
+(setq reftex-ref-macro-prompt nil)
+(setq reftex-label-alist '(AMSTeX))
 ;; config to have the LaTeX file link with the PDF
 ;;    add "\usepackage[active]{srcltx}" in the LaTeX file
 (setq TeX-source-correlate-method (quote synctex))
