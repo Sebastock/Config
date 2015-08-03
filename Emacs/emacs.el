@@ -1,6 +1,6 @@
 ;;----------------------------------------------------------;;
 ;;-------     Mon "précieux" .emacs.el       ---------------;;
-;;-------             sebastock 10.07.2015   ---------------;;
+;;-------             sebastock  1.08.2015   ---------------;;
 ;;----------------------------------------------------------;;
 ;;
 ;;     ___ _ __ ___   __ _  ___ ___     ___  _
@@ -43,6 +43,7 @@
 (setq scroll-conservatively 100)       ; scroll as usual
 (setq scroll-margin 3)		       ; keep 2 lines above & below cursor
 (fset 'yes-or-no-p 'y-or-n-p)          ; no more yes and no just y/n
+(setq-default fill-column 10000000)    ; don't cut the line
 ;; (setq x-select-enable-primary nil)
 ;; (setq x-select-enable-clipboard t)
 
@@ -187,6 +188,9 @@
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq TeX-newline-function 'newline-and-indent)
 (TeX-global-PDF-mode t)
+;; Informative error message
+(setq LaTeX-command-style
+      '(("" "%(PDF)%(latex) -file-line-error %S%(PDFout)")))
 ;; To have nice eqref and no prompt
 (setq reftex-ref-macro-prompt nil)
 (setq reftex-label-alist '(AMSTeX))
