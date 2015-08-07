@@ -1,6 +1,6 @@
 ;;----------------------------------------------------------;;
 ;;-------     Mon "précieux" .emacs.el       ---------------;;
-;;-------             sebastock  1.08.2015   ---------------;;
+;;-------             sebastock  6.08.2015   ---------------;;
 ;;----------------------------------------------------------;;
 ;;
 ;;     ___ _ __ ___   __ _  ___ ___     ___  _
@@ -259,7 +259,8 @@
 (autoload 'markdown-mode "markdown-mode"
   "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-
+;; F.5) R
+(ess-toggle-underscore nil)		; no more '<-' instead of _
 
 ;;-----------------------------------------------------;;
 ;;              Fancy but not usued...                 ;;
