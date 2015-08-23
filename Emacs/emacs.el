@@ -1,6 +1,6 @@
 ;;----------------------------------------------------------;;
 ;;-------     Mon "précieux" .emacs.el       ---------------;;
-;;-------             sebastock  6.08.2015   ---------------;;
+;;-------             sebastock  22.08.2015   --------------;;
 ;;----------------------------------------------------------;;
 ;;
 ;;     ___ _ __ ___   __ _  ___ ___     ___  _
@@ -13,6 +13,7 @@
 ;; [f3/f4] : define macro
 ;; [f5]    : server-without-annoying-message
 ;; [f6]    : active-yasnippet
+;; [f7]    : sr-speedbar
 ;; [f8]    : add-a-number
 ;; [f10]   : open-in-nautilus
 ;; [f11]   : open-in-guake
@@ -55,6 +56,15 @@
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))	    ; switch between frame with shift-... (instead of C-x o)
 (global-set-key "\C-m" 'newline-and-indent) ; automatic indentation
+;; speedbar
+(load "~/.emacs.d/sr-speedbar.el")     ; speedbar in one frame
+(setq speedbar-use-images nil)	       ; turn off the ugly icons
+(setq sr-speedbar-right-side nil)      ; left-side pane
+(setq sr-speedbar-auto-refresh t)      ; don't refresh on buffer changes
+(speedbar-add-supported-extension ".r")
+(speedbar-add-supported-extension ".csv")
+(setq speedbar-show-unknown-files t)
+(global-set-key [f7] 'sr-speedbar-toggle)
 
 ;;--------------------------------------------------------;;
 ;;         D) Emacs as a 'customized' editor              ;;
