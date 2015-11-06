@@ -36,6 +36,7 @@
 ;;--------------------------------------------------------;;
 ;;           B) Emacs as a 'normal' editor                ;;
 ;;--------------------------------------------------------;;
+(setq cua-remap-control-v nil)
 (cua-mode t)			       ; C-x, C-c, C-v
 (global-visual-line-mode 1)            ; show the line like any editor
 (setq inhibit-startup-message t)       ; no startup message
@@ -316,4 +317,18 @@
 ;;	     ))
 ;;(autoload 'octave-mode "octave-mod" nil t)
 ;;(setq auto-mode-alist
-;;      (append '(("\\.m$" . octave-mode)) auto-mode-alist))
+;;      (append '(("\\.m$" . octave-mode)) auto-mode-alist)
+
+;; test 
+(global-set-key "\M-t" 'set-mark-command)
+(global-set-key "\M-z" 'undo)
+(global-set-key "\M-n" 'forward-list)
+(global-set-key "\M-p" 'backward-list)
+(global-set-key "\M-v" 'yank)
+(global-set-key "\M-c" 'kill-ring-save)
+;;(global-set-key "\M-x" 'kill)
+(global-set-key "\C-v" 'yank)
+
+
+(global-set-key [M-up] 'scroll-up-5)
+(global-set-key [M-down] 'scroll-down-5)
