@@ -1,6 +1,6 @@
 ;;----------------------------------------------------------;;
 ;;-------     Mon "précieux" .emacs.el       ---------------;;
-;;-------             sebastock  22.08.2015   --------------;;
+;;-------             sebastock  20.11.2015   --------------;;
 ;;----------------------------------------------------------;;
 ;;
 ;;     ___ _ __ ___   __ _  ___ ___     ___  _
@@ -321,13 +321,9 @@
 
 ;; test 
 (global-set-key "\M-t" 'set-mark-command)
-(global-set-key "\M-z" 'undo)
 (global-set-key "\M-n" 'forward-list)
 (global-set-key "\M-p" 'backward-list)
-(global-set-key "\M-v" 'yank)
-(global-set-key "\M-c" 'kill-ring-save)
-;;(global-set-key "\M-x" 'kill)
-(global-set-key "\C-v" 'yank)
+
 
 
 (global-set-key [M-up] 'scroll-up-5)
