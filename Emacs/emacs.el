@@ -1,6 +1,6 @@
 ;;----------------------------------------------------------;;
 ;;-------     Mon "précieux" .emacs.el       ---------------;;
-;;-------             sebastock  20.11.2015   --------------;;
+;;-------             sebastock  19.12.2015   --------------;;
 ;;----------------------------------------------------------;;
 ;;
 ;;     ___ _ __ ___   __ _  ___ ___     ___  _
@@ -37,13 +37,13 @@
 ;;           B) Emacs as a 'normal' editor                ;;
 ;;--------------------------------------------------------;;
 (setq cua-remap-control-v nil)
-(cua-mode t)			       ; C-x, C-c, C-v
+(cua-mode t)			               ; C-x, C-c, C-v
 (global-visual-line-mode 1)            ; show the line like any editor
 (setq inhibit-startup-message t)       ; no startup message
 (delete-selection-mode 1)              ; erase selectionned text
 (setq c-basic-offset 4)                ; 4 space for the indentation
 (setq scroll-conservatively 100)       ; scroll as usual
-(setq scroll-margin 3)		       ; keep 2 lines above & below cursor
+(setq scroll-margin 3)		           ; keep 2 lines above & below cursor
 (fset 'yes-or-no-p 'y-or-n-p)          ; no more yes and no just y/n
 (setq-default fill-column 10000000)    ; don't cut the line
 ;; (setq x-select-enable-primary nil)
@@ -105,6 +105,11 @@
 (add-to-list 'load-path "~/.emacs.d/powerline-master/")
 (require 'powerline)
 (powerline-center-theme)
+;; D.5) shortcuts
+;;---------------
+(global-set-key "\C-t" 'set-mark-command)
+(global-set-key "\M-n" 'forward-list)
+(global-set-key "\M-p" 'backward-list)
 
 ;;--------------------------------------------------------;;
 ;;            E) Emacs as a 'superb' editor               ;;
@@ -132,9 +137,7 @@
 (defun active-yasnippet ()
   "Activate the yasnippet mode"
   (interactive)
-  (add-to-list 'load-path "~/.emacs.d/yasnippet-0.6.1c")
-  (require 'yasnippet) ;; not yasnippet-bundle
-  (yas/initialize)
+  (yas-global-mode 1)
   (setq yas/root-directory "~/.emacs.d/mysnippets")
   (yas/load-directory yas/root-directory)
   )
@@ -189,16 +192,24 @@
    (point-min) (point-max)
    "guake --new-tab=new --execute-command=\"cd `pwd`\""))
 (global-set-key [f11] 'open-guake-on-buffer)
+;; E.8) multiple cursor
+;;---------------------
+(add-to-list 'load-path "~/.emacs.d/multiple-cursors.el-master")
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 
 ;;--------------------------------------------------------;;
 ;;           F) special mode                              ;;
 ;;--------------------------------------------------------;;
 ;; F.1) Auctex
-(require 'tex)
+;;(require 'tex)
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq TeX-newline-function 'newline-and-indent)
-(TeX-global-PDF-mode t)
+;;(TeX-global-PDF-mode t)
 ;; Informative error message
 (setq LaTeX-command-style
       '(("" "%(PDF)%(latex) -file-line-error %S%(PDFout)")))
@@ -262,9 +273,6 @@
 	 "* TODO %?\n  %i\n  %a")
         ("j" "Journal" entry (file+datetree "~/Computer/Emacs/org-mode/notes/journal.org")
 	 "* %?\nEntered on %U\n  %i\n  %a")))
-
-
-
 ;; F.4) Markdown
 ;;--------------
 (autoload 'markdown-mode "markdown-mode"
@@ -289,23 +297,14 @@
 ;;(setq sr-speedbar-width-x 40)
 ;;(setq sr-speedbar-width 40)
 ;;(global-set-key [f7] 'speedbar) ; shortcut
-;;-------------------
-;; 3) multiple cursor
-;;-------------------
-;;(add-to-list 'load-path "~/.emacs.d/multiple-cursors.el-master")
-;;(require 'multiple-cursors)
-;;(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-;;(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-;;(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-;;(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 ;;--------------------------
-;; 4) emacs with thunderbird
+;; 3) emacs with thunderbird
 ;;--------------------------
 ;;use org mode for eml files (useful for thunderbird plugin)
 ;;   see http://pragmaticemacs.com/emacs/use-emacs-for-thunderbird-emails/
 ;;(add-to-list 'auto-mode-alist '("\\.eml\\'" . org-mode))
 ;;----------------------------
-;; 5) imenu for octave
+;; 4) imenu for octave
 ;;--------------------
 ;;(setq imenu-generic-expression
 ;;      '((nil "\s-?\\([A-Z]\.[1-9]\).*\\)\s-*" 1)))
@@ -318,13 +317,3 @@
 ;;(autoload 'octave-mode "octave-mod" nil t)
 ;;(setq auto-mode-alist
 ;;      (append '(("\\.m$" . octave-mode)) auto-mode-alist)
-
-;; test 
-(global-set-key "\M-t" 'set-mark-command)
-(global-set-key "\M-n" 'forward-list)
-(global-set-key "\M-p" 'backward-list)
-
-
-
-(global-set-key [M-up] 'scroll-up-5)
-(global-set-key [M-down] 'scroll-down-5)
