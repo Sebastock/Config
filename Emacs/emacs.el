@@ -1,6 +1,6 @@
 ;;----------------------------------------------------------;;
 ;;-------     Mon "précieux" .emacs.el       ---------------;;
-;;-------             sebastock  19.12.2015   --------------;;
+;;-------             sebastock  30.01.2016   --------------;;
 ;;----------------------------------------------------------;;
 ;;
 ;;     ___ _ __ ___   __ _  ___ ___     ___  _
@@ -17,6 +17,15 @@
 ;; [f8]    : add-a-number
 ;; [f10]   : open-in-nautilus
 ;; [f11]   : open-in-guake
+
+;;-- package systems
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (add-to-list
+   'package-archives
+   '("melpa" . "http://melpa.org/packages/")
+   t)
+  (package-initialize))
 
 ;;--------------------------------------------------------;;
 ;;                   A) Visual theme                      ;;
@@ -36,7 +45,7 @@
 ;;--------------------------------------------------------;;
 ;;           B) Emacs as a 'normal' editor                ;;
 ;;--------------------------------------------------------;;
-(setq cua-remap-control-v nil)
+;;(setq cua-remap-control-v nil)
 (cua-mode t)			               ; C-x, C-c, C-v
 (global-visual-line-mode 1)            ; show the line like any editor
 (setq inhibit-startup-message t)       ; no startup message
@@ -56,6 +65,7 @@
 (load "~/.emacs.d/tabbar_seb.el")      ; tab (C-up,C-down to switch)
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))	    ; switch between frame with shift-... (instead of C-x o)
+(global-set-key "\C-o" 'other-window)
 (global-set-key "\C-m" 'newline-and-indent) ; automatic indentation
 ;; speedbar
 (load "~/.emacs.d/sr-speedbar.el")     ; speedbar in one frame
@@ -200,7 +210,11 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-
+;; E.9) Ido (smart guy)
+;;---------------------
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
 
 ;;--------------------------------------------------------;;
 ;;           F) special mode                              ;;
@@ -281,6 +295,9 @@
 ;; F.5) R
 (ess-toggle-underscore nil)		; no more '<-' instead of _
 
+
+
+
 ;;-----------------------------------------------------;;
 ;;              Fancy but not usued...                 ;;
 ;;-----------------------------------------------------;;
@@ -317,3 +334,18 @@
 ;;(autoload 'octave-mode "octave-mod" nil t)
 ;;(setq auto-mode-alist
 ;;      (append '(("\\.m$" . octave-mode)) auto-mode-alist)
+;;----------------------------
+;; 5) tabbar-ruler
+;;--------------------
+;; (setq tabbar-ruler-global-tabbar t)	; get tabbar
+;; ;;(setq tabbar-ruler-global-ruler t)	; get global ruler
+;; ;;(setq tabbar-ruler-popup-menu t)	; get popup menu.
+;; ;;(setq tabbar-ruler-popup-toolbar t)	; get popup toolbar
+;; ;;(setq tabbar-ruler-popup-scrollbar t)	; show scroll-bar on mouse-move
+;; (require 'tabbar-ruler)
+;;----------------------------
+;; 6) elscreen
+;;--------------------
+;;(elscreen-start)
+
+

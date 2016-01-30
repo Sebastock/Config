@@ -1,6 +1,5 @@
 ;; Tabbar-mode un peu customizer
 ;;------------------------------
-
 (when (require 'tabbar nil t)
   (setq tabbar-buffer-groups-function
     	(lambda () (list "All Buffers")))
@@ -11,7 +10,6 @@
     	     (find (aref (buffer-name buffer) 0) " *"))
     	   (buffer-list))))
   (tabbar-mode))
-
 ;; Tabbar
 (require 'tabbar)
 ;; Tabbar settings
@@ -43,33 +41,25 @@
  'tabbar-separator nil
  :background "gray20"
  :height 0.6)
-
-;; Change padding of the tabs
-;; we also need to set separator to avoid overlapping tabs by highlighted tabs
-(custom-set-variables
- '(tabbar-separator (quote (0.5))))
-;; adding spaces
-(defun tabbar-buffer-tab-label (tab)
-  "Return a label for TAB.
-That is, a string used to represent it on the tab bar."
-  (let ((label (if tabbar--buffer-show-groups
-                    (format "[%s] " (tabbar-tab-tabset tab))
-                  (format "%s " (tabbar-tab-value tab)))))
-    ;; Unless the tab bar auto scrolls to keep the selected tab
-    ;; visible, shorten the tab label to keep as many tabs as possible
-    ;; in the visible area of the tab bar.
-    (if tabbar-auto-scroll-flag
-        label
-      (tabbar-shorten
-       label (max 1 (/ (window-width)
-                       (length (tabbar-view
-                                (tabbar-current-tabset)))))))))
-
-(tabbar-mode 1)
-
+;; 
+;; Nice! ('M-x customize' to find the name of the font)
+(set-face-attribute
+ 'tabbar-modified nil
+ :background "gray30"
+ :foreground "yellow"
+;; :height 1.1
+ :height 135
+ :font "Ubuntu mono"
+ :box '(:line-width 1 :color "gray20" :style nil))
 
 ;; Raccourcis clavier pour changer de buffer
 (global-set-key [\C-tab] 'tabbar-forward-tab)
 (global-set-key (kbd "<C-S-iso-lefttab>") 'tabbar-backward-tab)
 (global-set-key [C-next] 'tabbar-forward-tab)
 (global-set-key [C-prior] 'tabbar-backward-tab)
+;; add space between name
+(setq tabbar-tab-label-function
+      (lambda (tab) (tabbar-shorten (format " %s " (car tab)) 20))) ;(lambda (tab) (format " %s " (car tab)))
+;; add space tab
+(custom-set-variables
+ '(tabbar-separator (quote (0.75))))
