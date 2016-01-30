@@ -43,15 +43,15 @@
  :height 0.6)
 ;; 
 ;; Nice! ('M-x customize' to find the name of the font)
-(set-face-attribute
- 'tabbar-modified nil
- :background "gray30"
- :foreground "yellow"
-;; :height 1.1
- :height 135
- :font "Ubuntu mono"
- :box '(:line-width 1 :color "gray20" :style nil))
-
+(if window-system
+    (set-face-attribute
+     'tabbar-modified nil
+     :background "gray30"
+     :foreground "yellow"
+     ;; :height 1.1
+     :height 135
+     :font "Ubuntu mono"
+     :box '(:line-width 1 :color "gray20" :style nil)))
 ;; Raccourcis clavier pour changer de buffer
 (global-set-key [\C-tab] 'tabbar-forward-tab)
 (global-set-key (kbd "<C-S-iso-lefttab>") 'tabbar-backward-tab)
