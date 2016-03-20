@@ -57,6 +57,8 @@
 (setq-default fill-column 10000000)    ; don't cut the line
 ;; (setq x-select-enable-primary nil)
 ;; (setq x-select-enable-clipboard t)
+(setq confirm-kill-emacs #'y-or-n-p)
+
 
 ;;--------------------------------------------------------;;
 ;;           C) Emacs as a 'modern' editor                ;;
@@ -215,6 +217,7 @@
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode 1)
+(ido-vertical-mode 1)
 
 ;;--------------------------------------------------------;;
 ;;           F) special mode                              ;;
