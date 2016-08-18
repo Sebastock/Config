@@ -59,7 +59,6 @@
 ;; (setq x-select-enable-clipboard t)
 (setq confirm-kill-emacs #'y-or-n-p)
 
-
 ;;--------------------------------------------------------;;
 ;;           C) Emacs as a 'modern' editor                ;;
 ;;--------------------------------------------------------;;
@@ -114,7 +113,6 @@
    ))
 ;; D.4) power-line
 ;;----------------
-(add-to-list 'load-path "~/.emacs.d/powerline-master/")
 (require 'powerline)
 (powerline-center-theme)
 ;; D.5) shortcuts
@@ -150,7 +148,7 @@
   "Activate the yasnippet mode"
   (interactive)
   (yas-global-mode 1)
-  (setq yas/root-directory "~/.emacs.d/mysnippets")
+  (setq yas/root-directory "~/.emacs.d/snippets")
   (yas/load-directory yas/root-directory)
   )
 (global-set-key [f6] 'active-yasnippet)
@@ -206,7 +204,6 @@
 (global-set-key [f11] 'open-guake-on-buffer)
 ;; E.8) multiple cursor
 ;;---------------------
-(add-to-list 'load-path "~/.emacs.d/multiple-cursors.el-master")
 (require 'multiple-cursors)
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
@@ -296,7 +293,12 @@
   "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 ;; F.5) R
-(ess-toggle-underscore nil)		; no more '<-' instead of _
+;(ess-toggle-underscore nil)		; no more '<-' instead of _
+(add-hook 'ess-mode-hook
+          (lambda () 
+            (ess-toggle-underscore nil)))
+
+
 
 
 
@@ -350,5 +352,4 @@
 ;; 6) elscreen
 ;;--------------------
 ;;(elscreen-start)
-
 

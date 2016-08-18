@@ -14,7 +14,7 @@ set -o emacs			# pour avoir les raccourcis emacs
 #/usr/games/fortune		# un peu de sagesse
 # on rajoute un petit dossier où l'on met nos scripts
 if [ -d ~/Computer/Shell/myScripts ] ; then
-    PATH=~/Computer/Shell/myScripts:/opt/intel/bin/:"${PATH}"
+    PATH=~/Computer/Shell/myScripts:"${PATH}"
     export PATH
     #export PATH=$PATH:/home/seba/Computer/Shell/Macro_script
 fi
@@ -22,9 +22,11 @@ fi
 export GS_OPTIONS=-dAutoRotatePages=/None
 
 alias q='exit'
-alias mocp2="mocp /media/Stock/Music"
-alias ifort="/opt/intel/bin/ifort"
-alias matlab="/opt/matlab/bin/./matlab -nojvm"
+alias seb_asu="ssh -p 2200 smotsch@129.219.43.222"
+alias oct="octave --no-gui"
+#alias mocp2="mocp /media/Stock/Music"
+#alias ifort="/opt/intel/bin/ifort"
+#alias matlab="/opt/matlab/bin/./matlab -nojvm"
 
 # my favorite editor
 EDITOR="emacs -nw"; export EDITOR
