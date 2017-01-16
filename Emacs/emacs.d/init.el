@@ -97,6 +97,27 @@
   (dotimes (i 5) (next-line n)))
 (global-set-key [C-up] 'scroll-up-5)
 (global-set-key [C-down] 'scroll-down-5)
+;; scroll by half-page, with same line position pointer
+;;   see also https://www.emacswiki.org/emacs/Scrolling
+(defun zz-scroll-half-page (direction)
+  "Scrolls half page up if `direction' is non-nil, otherwise will scroll half page down."
+  (let ((opos (cdr (nth 6 (posn-at-point)))))
+    ;; opos = original position line relative to window
+    (move-to-window-line nil)  ;; Move cursor to middle line
+    (if direction
+	(recenter-top-bottom -1)  ;; Current line becomes last
+      (recenter-top-bottom 0))  ;; Current line becomes first
+    (move-to-window-line opos)))  ;; Restore cursor/point position
+(defun zz-scroll-half-page-down ()
+  "Scrolls exactly half page down keeping cursor/point position."
+  (interactive)
+  (zz-scroll-half-page nil))
+(defun zz-scroll-half-page-up ()
+  "Scrolls exactly half page up keeping cursor/point position."
+  (interactive)
+  (zz-scroll-half-page t))
+(global-set-key [next] 'zz-scroll-half-page-down)
+(global-set-key [prev] 'zz-scroll-half-page-up)
 ;; D.3) cut or copy one line
 ;; -------------------------
 (defadvice kill-ring-save (before slick-copy activate compile)
@@ -118,8 +139,9 @@
 ;; D.5) shortcuts
 ;;---------------
 (global-set-key "\C-t" 'set-mark-command)
-(global-set-key "\M-n" 'forward-list)
-(global-set-key "\M-p" 'backward-list)
+;;(global-set-key "\C-a" 'set-mark-command)
+(global-set-key "\C-n" 'forward-list)
+(global-set-key "\C-p" 'backward-list)
 
 ;;--------------------------------------------------------;;
 ;;            E) Emacs as a 'superb' editor               ;;
@@ -215,6 +237,14 @@
 (setq ido-everywhere t)
 (ido-mode 1)
 (ido-vertical-mode 1)
+(setq ido-auto-merge-work-directories-length -1)
+;; E.10) Avy (fast moving around)
+(setq avy-keys
+      (nconc (number-sequence ?a ?z)
+             (number-sequence ?A ?Z)
+             (number-sequence ?1 ?9)
+             '(?0)))
+(global-set-key (kbd "<C-f10>") 'avy-goto-word-or-subword-1)
 
 ;;--------------------------------------------------------;;
 ;;           F) special mode                              ;;
@@ -287,13 +317,16 @@
 	 "* TODO %?\n  %i\n  %a")
         ("j" "Journal" entry (file+datetree "~/Computer/Emacs/org-mode/notes/journal.org")
 	 "* %?\nEntered on %U\n  %i\n  %a")))
+;; nice bullet
+(require 'org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 ;; F.4) Markdown
 ;;--------------
 (autoload 'markdown-mode "markdown-mode"
   "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 ;; F.5) R
-;(ess-toggle-underscore nil)		; no more '<-' instead of _
+;;(ess-toggle-underscore nil)		; no more '<-' instead of _
 (add-hook 'ess-mode-hook
           (lambda () 
             (ess-toggle-underscore nil)))
@@ -352,4 +385,3 @@
 ;; 6) elscreen
 ;;--------------------
 ;;(elscreen-start)
-
