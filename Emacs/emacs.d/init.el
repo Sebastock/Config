@@ -139,7 +139,6 @@
 ;; D.5) shortcuts
 ;;---------------
 (global-set-key "\C-t" 'set-mark-command)
-;;(global-set-key "\C-a" 'set-mark-command)
 (global-set-key "\C-n" 'forward-list)
 (global-set-key "\C-p" 'backward-list)
 
@@ -170,7 +169,7 @@
   "Activate the yasnippet mode"
   (interactive)
   (yas-global-mode 1)
-  (setq yas/root-directory "~/.emacs.d/snippets")
+  (setq yas/root-directory "~/.emacs.d/mysnippets")
   (yas/load-directory yas/root-directory)
   )
 (global-set-key [f6] 'active-yasnippet)
@@ -238,7 +237,7 @@
 (ido-mode 1)
 (ido-vertical-mode 1)
 (setq ido-auto-merge-work-directories-length -1)
-;; E.10) Avy (fast moving around)
+;; E.10) Avy-mode (fast moving around)
 (setq avy-keys
       (nconc (number-sequence ?a ?z)
              (number-sequence ?A ?Z)
