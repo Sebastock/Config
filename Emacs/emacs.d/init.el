@@ -69,13 +69,13 @@
 (global-set-key "\C-o" 'other-window)
 (global-set-key "\C-m" 'newline-and-indent) ; automatic indentation
 ;; speedbar
-(load "~/.emacs.d/sr-speedbar.el")     ; speedbar in one frame
-(setq speedbar-use-images nil)	       ; turn off the ugly icons
-(setq sr-speedbar-right-side nil)      ; left-side pane
-(setq sr-speedbar-auto-refresh t)      ; don't refresh on buffer changes
-(speedbar-add-supported-extension ".r")
-(speedbar-add-supported-extension ".csv")
-(setq speedbar-show-unknown-files t)
+;; (load "~/.emacs.d/sr-speedbar.el")     ; speedbar in one frame
+;; (setq speedbar-use-images nil)	       ; turn off the ugly icons
+;; (setq sr-speedbar-right-side nil)      ; left-side pane
+;; (setq sr-speedbar-auto-refresh t)      ; don't refresh on buffer changes
+;; (speedbar-add-supported-extension ".r")
+;; (speedbar-add-supported-extension ".csv")
+;; (setq speedbar-show-unknown-files t)
 (global-set-key [f7] 'sr-speedbar-toggle)
 
 ;;--------------------------------------------------------;;
@@ -284,6 +284,9 @@
        (when (, recenter-output-buffer) (TeX-recenter-output-buffer nil))
        (TeX-command (, cmd) 'TeX-master-file (if (, override-confirm) 1 -1)))))
 (global-set-key "\C-cc" (tex-build-command-function "LaTeX" nil t))
+;;(global-set-key "\C-c <down>" 'LaTeX-environment)
+(global-set-key (kbd "C-c <down>") 'LaTeX-environment)
+
 ;; F.2) Text
 ;;----------
 (require 'generic-x)
@@ -301,6 +304,9 @@
 ;; F.3) Org-mode
 ;;--------------
 (require 'org)
+(add-to-list 'org-emphasis-alist
+             '("_" (:foreground "green")
+               ))
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
@@ -384,3 +390,23 @@
 ;; 6) elscreen
 ;;--------------------
 ;;(elscreen-start)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-startup-folded nil)
+ '(package-selected-packages
+   (quote
+    (sr-speedbar yasnippet tabbar powerline org-bullets multiple-cursors magit julia-mode ido-vertical-mode avy auctex)))
+ '(tabbar-separator (quote (0.75))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+;; bug warning
+;;(setq byte-compile-warnings '(not free-vars ))
+
