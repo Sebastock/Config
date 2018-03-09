@@ -244,6 +244,15 @@
              (number-sequence ?1 ?9)
              '(?0)))
 (global-set-key (kbd "<C-f10>") 'avy-goto-word-or-subword-1)
+;; E.11) Copy clipboard to guake
+(defun copy-clipboard-to-guake ()
+  "copy clipboard to guake!"
+  (interactive)
+  (shell-command
+   (concat "guake --execute-command="  (shell-quote-argument (buffer-substring-no-properties (region-beginning) (region-end))))
+   )
+  )
+(global-set-key [M-f12] 'copy-clipboard-to-guake)
 
 ;;--------------------------------------------------------;;
 ;;           F) special mode                              ;;
@@ -307,6 +316,15 @@
 (add-to-list 'org-emphasis-alist
              '("_" (:foreground "green")
                ))
+;; (global-set-key "\M-u" 'org-move-item-up)
+;; (add-hook 'org-mode-hook
+;;       (lambda ()
+;;         (local-unset-key (kbd "\M-e"))))
+;; (add-hook 'org-mode-hook
+;;           '(lambda ()
+;;              (define-key org-mode-map (kbd "\M-e") nil)))
+;;(define-key org-mode-map (kbd "\M-e") nil)
+(global-set-key "\M-e" 'org-move-item-down)
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
@@ -332,6 +350,7 @@
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 ;; F.5) R
 ;;(ess-toggle-underscore nil)		; no more '<-' instead of _
+(require 'ess)
 (add-hook 'ess-mode-hook
           (lambda () 
             (ess-toggle-underscore nil)))
@@ -409,4 +428,7 @@
 
 ;; bug warning
 ;;(setq byte-compile-warnings '(not free-vars ))
+
+
+
 
