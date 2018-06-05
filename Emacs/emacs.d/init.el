@@ -1,6 +1,6 @@
 ;;----------------------------------------------------------;;
 ;;-------     Mon "précieux" .emacs.el       ---------------;;
-;;-------             sebastock  30.01.2016   --------------;;
+;;-------             sebastock  04.06.2018   --------------;;
 ;;----------------------------------------------------------;;
 ;;
 ;;     ___ _ __ ___   __ _  ___ ___     ___  _
@@ -10,10 +10,8 @@
 ;;
 ;;
 ;; shortcut
-;; [f3/f4] : define macro
-;; [f5]    : server-without-annoying-message
+;; [f3/f4/f5] : define macro (f5 to correct bug with cua-mode)
 ;; [f6]    : active-yasnippet
-;; [f7]    : sr-speedbar
 ;; [f8]    : add-a-number
 ;; [f10]   : open-in-nautilus
 ;; [f11]   : open-in-guake
@@ -58,6 +56,7 @@
 ;; (setq x-select-enable-primary nil)
 ;; (setq x-select-enable-clipboard t)
 (setq confirm-kill-emacs #'y-or-n-p)
+(setq ring-bell-function 'ignore)
 
 ;;--------------------------------------------------------;;
 ;;           C) Emacs as a 'modern' editor                ;;
@@ -68,15 +67,6 @@
   (windmove-default-keybindings))	    ; switch between frame with shift-... (instead of C-x o)
 (global-set-key "\C-o" 'other-window)
 (global-set-key "\C-m" 'newline-and-indent) ; automatic indentation
-;; speedbar
-;; (load "~/.emacs.d/sr-speedbar.el")     ; speedbar in one frame
-;; (setq speedbar-use-images nil)	       ; turn off the ugly icons
-;; (setq sr-speedbar-right-side nil)      ; left-side pane
-;; (setq sr-speedbar-auto-refresh t)      ; don't refresh on buffer changes
-;; (speedbar-add-supported-extension ".r")
-;; (speedbar-add-supported-extension ".csv")
-;; (setq speedbar-show-unknown-files t)
-(global-set-key [f7] 'sr-speedbar-toggle)
 
 ;;--------------------------------------------------------;;
 ;;         D) Emacs as a 'customized' editor              ;;
@@ -177,15 +167,6 @@
 ;;-------------------------------------
 (substitute-key-definition
  'find-tag 'find-tag-other-window (current-global-map))
-;; E.5) emacs server (F5)
-;;-----------------------
-(defun server-without-annoying-message ()
-  "Server start, but we can kill buffer without being annoyed"
-  (interactive)
-  (server-start)
-  (remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function)
-  )
-(global-set-key [f5] 'server-without-annoying-message)
 ;; E.6) add a number to another number (F8)
 ;;-----------------------------------------
 (defun my-increment-number-decimal (&optional arg)
@@ -258,6 +239,7 @@
 ;;           F) special mode                              ;;
 ;;--------------------------------------------------------;;
 ;; F.1) Auctex
+;;-------------
 ;;(require 'tex)
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq TeX-newline-function 'newline-and-indent)
@@ -295,7 +277,6 @@
 (global-set-key "\C-cc" (tex-build-command-function "LaTeX" nil t))
 ;;(global-set-key "\C-c <down>" 'LaTeX-environment)
 (global-set-key (kbd "C-c <down>") 'LaTeX-environment)
-
 ;; F.2) Text
 ;;----------
 (require 'generic-x)
@@ -310,12 +291,15 @@
   "A mode for text files" ;; doc string for this mode
   )
 ;; see http://emacs-fu.blogspot.com/2010/04/creating-custom-modes-easy-way-with.html
+;;--------------
 ;; F.3) Org-mode
 ;;--------------
 (require 'org)
 (add-to-list 'org-emphasis-alist
              '("_" (:foreground "green")
                ))
+(custom-set-variables
+ '(org-startup-folded nil))
 ;; (global-set-key "\M-u" 'org-move-item-up)
 ;; (add-hook 'org-mode-hook
 ;;       (lambda ()
@@ -343,17 +327,49 @@
 ;; nice bullet
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+;;--------------
 ;; F.4) Markdown
 ;;--------------
 (autoload 'markdown-mode "markdown-mode"
   "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+;;-------
 ;; F.5) R
+;;-------
 ;;(ess-toggle-underscore nil)		; no more '<-' instead of _
 (require 'ess)
 (add-hook 'ess-mode-hook
           (lambda () 
             (ess-toggle-underscore nil)))
+;;----------------------------
+;; F.6) bug macro and cua-mode
+;;----------------------------
+;; fix problem of cua-mode and macro
+;; fix function
+(defun cua-macro-fix()
+  (kmacro-edit-macro)
+  ;; fix the C-c C-c
+  (goto-char (point-min))
+  (forward-line 7)
+  (while (search-forward "C-c C-c" nil t)
+    (replace-match "C-c"))
+  ;; fix the C-x C-x
+  (goto-char (point-min))
+  (forward-line 7)
+  (while (search-forward "C-x C-x" nil t)
+    (replace-match "C-x"))
+  (edmacro-finish-edit))
+;;bind the two functions
+(defun end-kbd-macro-with-fix()
+  (interactive)
+  (end-kbd-macro)
+  (cua-macro-fix))
+;;bind the function to f5
+(global-set-key (kbd "<f5>") 'end-kbd-macro-with-fix) 
+
+
+
+
 
 
 
@@ -407,24 +423,28 @@
 ;; (require 'tabbar-ruler)
 ;;----------------------------
 ;; 6) elscreen
-;;--------------------
-;;(elscreen-start)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(org-startup-folded nil)
- '(package-selected-packages
-   (quote
-    (sr-speedbar yasnippet tabbar powerline org-bullets multiple-cursors magit julia-mode ido-vertical-mode avy auctex)))
- '(tabbar-separator (quote (0.75))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+;;----------------------
+;; 7) emacs server (F5)
+;;-----------------------
+;; (defun server-without-annoying-message ()
+;;   "Server start, but we can kill buffer without being annoyed"
+;;   (interactive)
+;;   (server-start)
+;;   (remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function)
+;;   )
+;; (global-set-key [f5] 'server-without-annoying-message)
+;;------------
+;; 8) speedbar
+;;------------
+;; (load "~/.emacs.d/sr-speedbar.el")     ; speedbar in one frame
+;; (setq speedbar-use-images nil)	       ; turn off the ugly icons
+;; (setq sr-speedbar-right-side nil)      ; left-side pane
+;; (setq sr-speedbar-auto-refresh t)      ; don't refresh on buffer changes
+;; (speedbar-add-supported-extension ".r")
+;; (speedbar-add-supported-extension ".csv")
+;; (setq speedbar-show-unknown-files t)
+;;(global-set-key [f7] 'sr-speedbar-toggle)
+
 
 ;; bug warning
 ;;(setq byte-compile-warnings '(not free-vars ))
