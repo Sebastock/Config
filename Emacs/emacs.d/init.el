@@ -344,9 +344,11 @@
 ;;----------------------------
 ;; F.6) bug macro and cua-mode
 ;;----------------------------
-;; fix problem of cua-mode and macro
-;; fix function
-(defun cua-macro-fix()
+;; fix problem of cua-mode and macro                                                                                                                                                                               
+;;   https://emacs.stackexchange.com/questions/38780/cua-mode-and-keyboard-macros                                                                                                                                  
+;;   https://www.reddit.com/r/emacs/comments/7wscgb/problem_with_cuamode_and_macros/  
+(defun cua-macro-fix_seb()
+  (interactive)
   (kmacro-edit-macro)
   ;; fix the C-c C-c
   (goto-char (point-min))
@@ -359,21 +361,8 @@
   (while (search-forward "C-x C-x" nil t)
     (replace-match "C-x"))
   (edmacro-finish-edit))
-;;bind the two functions
-(defun end-kbd-macro-with-fix()
-  (interactive)
-  (end-kbd-macro)
-  (cua-macro-fix))
 ;;bind the function to f5
-(global-set-key (kbd "<f5>") 'end-kbd-macro-with-fix) 
-
-
-
-
-
-
-
-
+(global-set-key (kbd "<f5>") 'cua-macro-fix_seb)
 
 
 ;;-----------------------------------------------------;;
